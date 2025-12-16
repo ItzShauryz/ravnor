@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAVNOR - Premium Clothing Brand</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 3px solid #333;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            letter-spacing: 8px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-top: 0.5rem;
+            color: #cccccc;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #1a1a1a;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            display: block;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 1.2rem 2rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            letter-spacing: 1px;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background-color: #ffffff;
+            color: #000000;
+            border-bottom: 3px solid #000000;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: 3px;
+            border-bottom: 3px solid #000;
+            padding-bottom: 1rem;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            border: 2px solid #000;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            background-color: #ffffff;
+        }
+
+        .product-card:hover {
+            background-color: #000;
+            color: #fff;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            background-color: #f0f0f0;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border: 1px solid #ddd;
+        }
+
+        .product-card:hover .product-image {
+            background-color: #333;
+        }
+
+        .product-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .product-price {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #000;
+            background-color: #fff;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            background-color: #f9f9f9;
+            border-color: #333;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Buttons */
+        .btn {
+            background-color: #000;
+            color: #fff;
+            padding: 1rem 2.5rem;
+            border: 2px solid #000;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background-color: #fff;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Info Box */
+        .info-box {
+            background-color: #f5f5f5;
+            border: 2px solid #000;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .info-box h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .info-box ul {
+            margin-left: 1.5rem;
+            line-height: 2;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            border: 2px solid #000;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 3px solid #333;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            letter-spacing: 1px;
+        }
+
+        .credits {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            color: #999;
+        }
+
+        .credits strong {
+            color: #fff;
+        }
+
+        /* Order Type Radio */
+        .order-type {
+            display: flex;
+            gap: 2rem;
+            margin-top: 0.5rem;
+        }
+
+        .order-type label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        .order-type input[type="radio"] {
+            width: auto;
+        }
+
+        /* Success Message */
+        .success-message {
+            background-color: #000;
+            color: #fff;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+            display: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+                letter-spacing: 4px;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li a {
+                padding: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>RAVNOR</h1>
+        <p>PREMIUM CLOTHING COLLECTION</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#products" class="tab-link active" data-tab="products">Products</a></li>
+            <li><a href="#order" class="tab-link" data-tab="order">Order</a></li>
+            <li><a href="#return" class="tab-link" data-tab="return">Return</a></li>
+            <li><a href="#contact" class="tab-link" data-tab="contact">Contact</a></li>
+            <li><a href="#admin" class="tab-link" data-tab="admin">Admin Login</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Products Tab -->
+        <div id="products" class="tab-content active">
+            <h2 class="section-title">Our Collection</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">👕</div>
+                    <h3 class="product-name">Classic T-Shirt</h3>
+                    <p class="product-price">₹999 INR</p>
+                    <p>Premium cotton blend</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">👔</div>
+                    <h3 class="product-name">Formal Shirt</h3>
+                    <p class="product-price">₹1,499 INR</p>
+                    <p>Business casual elegance</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">👖</div>
+                    <h3 class="product-name">Designer Jeans</h3>
+                    <p class="product-price">₹2,299 INR</p>
+                    <p>Slim fit denim</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🧥</div>
+                    <h3 class="product-name">Winter Jacket</h3>
+                    <p class="product-price">₹3,499 INR</p>
+                    <p>Warm and stylish</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">👗</div>
+                    <h3 class="product-name">Summer Dress</h3>
+                    <p class="product-price">₹1,799 INR</p>
+                    <p>Light and comfortable</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🩳</div>
+                    <h3 class="product-name">Casual Shorts</h3>
+                    <p class="product-price">₹899 INR</p>
+                    <p>Perfect for summer</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Tab -->
+        <div id="order" class="tab-content">
+            <h2 class="section-title">Place Your Order</h2>
+            
+            <div class="info-box">
+                <h3>Payment & Delivery Information</h3>
+                <ul>
+                    <li><strong>Payment Method:</strong> Cash on Delivery (COD) Only</li>
+                    <li><strong>Delivery Area:</strong> UP Kasganj Only</li>
+                    <li><strong>Order:</strong> Delivered within 5 days</li>
+                    <li><strong>Order+:</strong> Delivered within 1 day (+₹10 INR extra)</li>
+                </ul>
+            </div>
+
+            <div class="success-message" id="orderSuccess">
+                Order placed successfully! We will contact you soon.
+            </div>
+
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="customerName">Name *</label>
+                    <input type="text" id="customerName" name="customerName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number *</label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" placeholder="10 digit number" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location (in Kasganj, UP) *</label>
+                    <input type="text" id="location" name="location" placeholder="Enter your complete address" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="productSelect">Select Product *</label>
+                    <select id="productSelect" name="productSelect" required>
+                        <option value="">Choose a product</option>
+                        <option value="Classic T-Shirt - ₹999">Classic T-Shirt - ₹999</option>
+                        <option value="Formal Shirt - ₹1499">Formal Shirt - ₹1,499</option>
+                        <option value="Designer Jeans - ₹2299">Designer Jeans - ₹2,299</option>
+                        <option value="Winter Jacket - ₹3499">Winter Jacket - ₹3,499</option>
+                        <option value="Summer Dress - ₹1799">Summer Dress - ₹1,799</option>
+                        <option value="Casual Shorts - ₹899">Casual Shorts - ₹899</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Quantity *</label>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Order Type *</label>
+                    <div class="order-type">
+                        <label>
+                            <input type="radio" name="orderType" value="Order" checked>
+                            Order (5 days delivery)
+                        </label>
+                        <label>
+                            <input type="radio" name="orderType" value="Order+">
+                            Order+ (1 day delivery - +₹10)
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn">Place Order</button>
+            </form>
+        </div>
+
+        <!-- Return Tab -->
+        <div id="return" class="tab-content">
+            <h2 class="section-title">Return Policy</h2>
+            
+            <div class="info-box">
+                <h3>Return & Exchange Guidelines</h3>
+                <ul>
+                    <li>Returns accepted within 7 days of delivery</li>
+                    <li>Product must be unused and in original packaging</li>
+                    <li>Tags and labels must be intact</li>
+                    <li>Return shipping costs to be borne by customer</li>
+                    <li>Refund will be processed within 5-7 business days</li>
+                    <li>Exchange available for size and color variations only</li>
+                </ul>
+            </div>
+
+            <h3 style="margin-top: 3rem; margin-bottom: 1rem; font-size: 1.5rem; letter-spacing: 2px;">Request a Return</h3>
+            
+            <div class="success-message" id="returnSuccess">
+                Return request submitted successfully! We will contact you soon.
+            </div>
+
+            <form id="returnForm">
+                <div class="form-group">
+                    <label for="returnName">Name *</label>
+                    <input type="text" id="returnName" name="returnName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="returnPhone">Phone Number *</label>
+                    <input type="tel" id="returnPhone" name="returnPhone" pattern="[0-9]{10}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="orderNumber">Order Number *</label>
+                    <input type="text" id="orderNumber" name="orderNumber" placeholder="e.g., RVN123456" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="returnReason">Reason for Return *</label>
+                    <textarea id="returnReason" name="returnReason" required></textarea>
+                </div>
+
+                <button type="submit" class="btn">Submit Return Request</button>
+            </form>
+        </div>
+
+        <!-- Contact Tab -->
+        <div id="contact" class="tab-content">
+            <h2 class="section-title">Contact Us</h2>
+
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h3>📍 Address</h3>
+                    <p>RAVNOR Clothing Store<br>
+                    Kasganj, Uttar Pradesh<br>
+                    India</p>
+                </div>
+                <div class="contact-card">
+                    <h3>📞 Phone</h3>
+                    <p>Customer Service:<br>
+                    +91-XXXXXXXXXX</p>
+                </div>
+                <div class="contact-card">
+                    <h3>✉️ Email</h3>
+                    <p>support@ravnor.com<br>
+                    orders@ravnor.com</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.5rem; letter-spacing: 2px;">Send Us a Message</h3>
+            
+            <div class="success-message" id="contactSuccess">
+                Message sent successfully! We will get back to you soon.
+            </div>
+
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="contactName">Name *</label>
+                    <input type="text" id="contactName" name="contactName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactEmail">Email *</label>
+                    <input type="email" id="contactEmail" name="contactEmail" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactSubject">Subject *</label>
+                    <input type="text" id="contactSubject" name="contactSubject" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactMessage">Message *</label>
+                    <textarea id="contactMessage" name="contactMessage" required></textarea>
+                </div>
+
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+
+        <!-- Admin Login Tab -->
+        <div id="admin" class="tab-content">
+            <h2 class="section-title">Admin Login</h2>
+            
+            <div style="max-width: 500px; margin: 2rem auto;">
+                <div class="success-message" id="adminSuccess">
+                    Login successful! Redirecting to admin panel...
+                </div>
+
+                <form id="adminForm">
+                    <div class="form-group">
+                        <label for="adminUsername">Username *</label>
+                        <input type="text" id="adminUsername" name="adminUsername" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="adminPassword">Password *</label>
+                        <input type="password" id="adminPassword" name="adminPassword" required>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%;">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 RAVNOR. All Rights Reserved.</p>
+        <div class="credits">
+            <p><strong>Website Created By:</strong> RDX Web Development</p>
+            <p><strong>RDX × RAVNOR</strong></p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab Navigation
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Remove active class from all links and contents
+                tabLinks.forEach(l => l.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked link
+                link.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = link.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Order Form Submission
+        document.getElementById('orderForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const orderData = {
+                name: formData.get('customerName'),
+                phone: formData.get('phoneNumber'),
+                location: formData.get('location'),
+                product: formData.get('productSelect'),
+                quantity: formData.get('quantity'),
+                orderType: formData.get('orderType')
+            };
+            
+            console.log('Order Submitted:', orderData);
+            
+            // Show success message
+            const successMsg = document.getElementById('orderSuccess');
+            successMsg.style.display = 'block';
+            
+            // Reset form
+            e.target.reset();
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 5000);
+        });
+
+        // Return Form Submission
+        document.getElementById('returnForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const returnData = {
+                name: formData.get('returnName'),
+                phone: formData.get('returnPhone'),
+                orderNumber: formData.get('orderNumber'),
+                reason: formData.get('returnReason')
+            };
+            
+            console.log('Return Request Submitted:', returnData);
+            
+            // Show success message
+            const successMsg = document.getElementById('returnSuccess');
+            successMsg.style.display = 'block';
+            
+            // Reset form
+            e.target.reset();
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 5000);
+        });
+
+        // Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const contactData = {
+                name: formData.get('contactName'),
+                email: formData.get('contactEmail'),
+                subject: formData.get('contactSubject'),
+                message: formData.get('contactMessage')
+            };
+            
+            console.log('Contact Message Submitted:', contactData);
+            
+            // Show success message
+            const successMsg = document.getElementById('contactSuccess');
+            successMsg.style.display = 'block';
+            
+            // Reset form
+            e.target.reset();
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 5000);
+        });
+
+        // Admin Login Submission
+        document.getElementById('adminForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const adminData = {
+                username: formData.get('adminUsername'),
+                password: formData.get('adminPassword')
+            };
+            
+            console.log('Admin Login Attempt:', adminData.username);
+            
+            // Show success message
+            const successMsg = document.getElementById('adminSuccess');
+            successMsg.style.display = 'block';
+            
+            // Simulate redirect after 2 seconds
+            setTimeout(() => {
+                alert('Admin panel would load here. Connect to backend for full functionality.');
+                successMsg.style.display = 'none';
+                e.target.reset();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
