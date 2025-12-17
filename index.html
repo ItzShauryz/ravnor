@@ -264,49 +264,6 @@
             letter-spacing: 2px;
         }
 
-        /* Footer */
-        footer {
-            background-color: #000;
-            color: #fff;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-            border-top: 3px solid #333;
-        }
-
-        footer p {
-            margin: 0.5rem 0;
-            letter-spacing: 1px;
-        }
-
-        .credits {
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            color: #999;
-        }
-
-        .credits strong {
-            color: #fff;
-        }
-
-        /* Order Type Radio */
-        .order-type {
-            display: flex;
-            gap: 2rem;
-            margin-top: 0.5rem;
-        }
-
-        .order-type label {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 500;
-        }
-
-        .order-type input[type="radio"] {
-            width: auto;
-        }
-
         /* Success Message */
         .success-message {
             background-color: #000;
@@ -317,6 +274,176 @@
             display: none;
             font-weight: 600;
             letter-spacing: 1px;
+        }
+
+        /* Added styles for coupon system */
+        .coupon-section {
+            background-color: #f5f5f5;
+            border: 2px solid #000;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .coupon-input-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .coupon-input-group input {
+            flex: 1;
+        }
+
+        .coupon-btn {
+            background-color: #000;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #000;
+            cursor: pointer;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .coupon-btn:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .coupon-success {
+            background-color: #000;
+            color: #fff;
+            padding: 0.8rem;
+            margin-top: 1rem;
+            display: none;
+            font-weight: 600;
+        }
+
+        .coupon-error {
+            background-color: #fff;
+            color: #000;
+            border: 2px solid #000;
+            padding: 0.8rem;
+            margin-top: 1rem;
+            display: none;
+            font-weight: 600;
+        }
+
+        .cost-breakdown {
+            background-color: #f9f9f9;
+            border: 2px solid #000;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .cost-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.5rem 0;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cost-row.total {
+            font-weight: 700;
+            font-size: 1.2rem;
+            border-bottom: 3px solid #000;
+            margin-top: 1rem;
+            padding-top: 1rem;
+        }
+
+        /* Added styles for admin panel */
+        .admin-panel {
+            display: none;
+        }
+
+        .admin-header {
+            background-color: #000;
+            color: #fff;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .logout-btn {
+            background-color: #fff;
+            color: #000;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid #fff;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        .orders-table th,
+        .orders-table td {
+            border: 2px solid #000;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .orders-table th {
+            background-color: #000;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .orders-table tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Added styles for terms modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 2rem;
+            border: 3px solid #000;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close-modal {
+            color: #000;
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: #666;
+        }
+
+        .terms-link {
+            color: #000;
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .terms-link:hover {
+            color: #666;
         }
 
         /* Responsive */
@@ -336,6 +463,21 @@
 
             .section-title {
                 font-size: 1.8rem;
+            }
+
+            /* Added responsive styles for coupon input */
+            .coupon-input-group {
+                flex-direction: column;
+            }
+
+            /* Added responsive styles for admin table */
+            .orders-table {
+                font-size: 0.8rem;
+            }
+
+            .orders-table th,
+            .orders-table td {
+                padding: 0.5rem;
             }
         }
     </style>
@@ -411,6 +553,7 @@
                     <li><strong>Delivery Area:</strong> UP Kasganj Only</li>
                     <li><strong>Order:</strong> Delivered within 5 days</li>
                     <li><strong>Order+:</strong> Delivered within 1 day (+₹10 INR extra)</li>
+                    <li><strong>Shipping Cost:</strong> ₹100 INR (Use coupon FRSHIP15 for free shipping!)</li>
                 </ul>
             </div>
 
@@ -438,12 +581,12 @@
                     <label for="productSelect">Select Product *</label>
                     <select id="productSelect" name="productSelect" required>
                         <option value="">Choose a product</option>
-                        <option value="Classic T-Shirt - ₹999">Classic T-Shirt - ₹999</option>
-                        <option value="Formal Shirt - ₹1499">Formal Shirt - ₹1,499</option>
-                        <option value="Designer Jeans - ₹2299">Designer Jeans - ₹2,299</option>
-                        <option value="Winter Jacket - ₹3499">Winter Jacket - ₹3,499</option>
-                        <option value="Summer Dress - ₹1799">Summer Dress - ₹1,799</option>
-                        <option value="Casual Shorts - ₹899">Casual Shorts - ₹899</option>
+                        <option value="Classic T-Shirt" data-price="999">Classic T-Shirt - ₹999</option>
+                        <option value="Formal Shirt" data-price="1499">Formal Shirt - ₹1,499</option>
+                        <option value="Designer Jeans" data-price="2299">Designer Jeans - ₹2,299</option>
+                        <option value="Winter Jacket" data-price="3499">Winter Jacket - ₹3,499</option>
+                        <option value="Summer Dress" data-price="1799">Summer Dress - ₹1,799</option>
+                        <option value="Casual Shorts" data-price="899">Casual Shorts - ₹899</option>
                     </select>
                 </div>
 
@@ -464,6 +607,55 @@
                             Order+ (1 day delivery - +₹10)
                         </label>
                     </div>
+                </div>
+
+                <!-- Apply coupon code section -->
+                <div class="coupon-section">
+                    <h3>Apply Coupon Code</h3>
+                    <p>Use code <strong>FRSHIP15</strong> to get free shipping!</p>
+                    <div class="coupon-input-group">
+                        <input type="text" id="couponCode" placeholder="Enter coupon code" style="text-transform: uppercase;">
+                        <button type="button" class="coupon-btn" id="applyCoupon">Apply</button>
+                    </div>
+                    <div class="coupon-success" id="couponSuccess">Coupon applied! Free shipping activated.</div>
+                    <div class="coupon-error" id="couponError">Invalid coupon code.</div>
+                </div>
+
+                <!-- Cost breakdown section -->
+                <div class="cost-breakdown">
+                    <h3>Cost Breakdown</h3>
+                    <div class="cost-row">
+                        <span>Product Price:</span>
+                        <span id="productPrice">₹0</span>
+                    </div>
+                    <div class="cost-row">
+                        <span>Quantity:</span>
+                        <span id="displayQuantity">1</span>
+                    </div>
+                    <div class="cost-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">₹0</span>
+                    </div>
+                    <div class="cost-row">
+                        <span>Order Type Fee:</span>
+                        <span id="orderTypeFee">₹0</span>
+                    </div>
+                    <div class="cost-row">
+                        <span>Shipping:</span>
+                        <span id="shippingCost">₹100</span>
+                    </div>
+                    <div class="cost-row total">
+                        <span>Total Amount:</span>
+                        <span id="totalAmount">₹100</span>
+                    </div>
+                </div>
+
+                <!-- Terms and conditions checkbox -->
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                        <input type="checkbox" id="termsAccept" required style="width: auto;">
+                        I accept the <span class="terms-link" id="openTerms">Terms and Conditions</span> *
+                    </label>
                 </div>
 
                 <button type="submit" class="btn">Place Order</button>
@@ -573,27 +765,111 @@
 
         <!-- Admin Login Tab -->
         <div id="admin" class="tab-content">
-            <h2 class="section-title">Admin Login</h2>
-            
-            <div style="max-width: 500px; margin: 2rem auto;">
-                <div class="success-message" id="adminSuccess">
-                    Login successful! Redirecting to admin panel...
+            <!-- Admin Login Form Section -->
+            <div id="adminLoginForm">
+                <h2 class="section-title">Admin Login</h2>
+                
+                <div style="max-width: 500px; margin: 2rem auto;">
+                    <div class="success-message" id="adminSuccess">
+                        Login successful! Loading admin panel...
+                    </div>
+
+                    <form id="adminForm">
+                        <div class="form-group">
+                            <label for="adminUsername">Username *</label>
+                            <input type="text" id="adminUsername" name="adminUsername" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="adminPassword">Password *</label>
+                            <input type="password" id="adminPassword" name="adminPassword" required>
+                        </div>
+
+                        <button type="submit" class="btn" style="width: 100%;">Login</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Admin Panel with Orders Display -->
+            <div id="adminPanel" class="admin-panel">
+                <div class="admin-header">
+                    <h2>RAVNOR Admin Panel</h2>
+                    <p>Order Management Dashboard</p>
+                    <button class="logout-btn" id="logoutBtn">Logout</button>
                 </div>
 
-                <form id="adminForm">
-                    <div class="form-group">
-                        <label for="adminUsername">Username *</label>
-                        <input type="text" id="adminUsername" name="adminUsername" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="adminPassword">Password *</label>
-                        <input type="password" id="adminPassword" name="adminPassword" required>
-                    </div>
-
-                    <button type="submit" class="btn" style="width: 100%;">Login</button>
-                </form>
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem; letter-spacing: 2px;">All Orders</h3>
+                
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer Name</th>
+                            <th>Phone</th>
+                            <th>Location</th>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Order Type</th>
+                            <th>Total</th>
+                            <th>Coupon</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersTableBody">
+                        <tr>
+                            <td colspan="10" style="text-align: center; padding: 2rem;">No orders yet</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+        </div>
+    </div>
+
+    <!-- Terms and Conditions Modal -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeTerms">&times;</span>
+            <h2 style="margin-bottom: 1.5rem; font-size: 2rem; letter-spacing: 2px;">Terms and Conditions</h2>
+            
+            <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">1. General Terms</h3>
+            <p>By placing an order with RAVNOR, you agree to these terms and conditions. Please read them carefully before making a purchase.</p>
+            
+            <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">2. Payment Terms</h3>
+            <p>We only accept Cash on Delivery (COD) as a payment method. Payment must be made in Indian Rupees (INR) at the time of delivery.</p>
+            
+            <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">3. Delivery Area</h3>
+            <p>We currently deliver only within Kasganj, Uttar Pradesh. Orders from outside this area will not be accepted.</p>
+            
+            <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">4. Delivery Time</h3>
+            <ul style="margin-left: 1.5rem; line-height: 2;">
+                <li><strong>Standard Order:</strong> Delivered within 5 business days</li>
+                <li><strong>Order+ (Express):</strong> Delivered within 1 business day with an additional fee of ₹10</li>
+            </ul>
+            
+            <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">5. Shipping Charges</h3>
+            <p>Standard shipping charge is ₹100 per order. This fee may be waived with applicable coupon codes.</p>
+            
+            <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">6. Returns and Exchanges</h3>
+            <ul style="margin-left: 1.5rem; line-height: 2;">
+                <li>Returns accepted within 7 days of delivery</li>
+                <li>Products must be unused, unwashed, and in original packaging</li>
+                <li>All tags and labels must be intact</li>
+                <li>Return shipping costs are borne by the customer</li>
+            </ul>
+            
+            <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">7. Product Quality</h3>
+            <p>We strive to ensure all products meet our quality standards. However, slight variations in color may occur due to screen settings.</p>
+            
+            <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">8. Order Cancellation</h3>
+            <p>Orders can be cancelled within 2 hours of placement. After this time, cancellation may not be possible if the order has been processed.</p>
+            
+            <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">9. Privacy Policy</h3>
+            <p>Your personal information will be used solely for order processing and delivery. We do not share your data with third parties.</p>
+            
+            <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">10. Contact</h3>
+            <p>For any queries or concerns, please contact us through our Contact page or email support@ravnor.com</p>
+            
+            <p style="margin-top: 2rem; font-weight: 600;">By checking the acceptance box, you acknowledge that you have read and agree to these terms and conditions.</p>
         </div>
     </div>
 
@@ -606,6 +882,10 @@
     </footer>
 
     <script>
+        let orders = JSON.parse(localStorage.getItem('ravnorOrders')) || [];
+        let couponApplied = false;
+        let isAdminLoggedIn = false;
+
         // Tab Navigation
         const tabLinks = document.querySelectorAll('.tab-link');
         const tabContents = document.querySelectorAll('.tab-content');
@@ -630,19 +910,92 @@
             });
         });
 
-        // Order Form Submission
+        function calculateTotal() {
+            const productSelect = document.getElementById('productSelect');
+            const selectedOption = productSelect.options[productSelect.selectedIndex];
+            const productPrice = parseInt(selectedOption.getAttribute('data-price')) || 0;
+            const quantity = parseInt(document.getElementById('quantity').value) || 1;
+            const orderType = document.querySelector('input[name="orderType"]:checked').value;
+            
+            const subtotal = productPrice * quantity;
+            const orderTypeFee = orderType === 'Order+' ? 10 : 0;
+            const shippingCost = couponApplied ? 0 : 100;
+            const total = subtotal + orderTypeFee + shippingCost;
+            
+            document.getElementById('productPrice').textContent = '₹' + productPrice;
+            document.getElementById('displayQuantity').textContent = quantity;
+            document.getElementById('subtotal').textContent = '₹' + subtotal;
+            document.getElementById('orderTypeFee').textContent = '₹' + orderTypeFee;
+            document.getElementById('shippingCost').textContent = couponApplied ? '₹0 (Free)' : '₹100';
+            document.getElementById('totalAmount').textContent = '₹' + total;
+            
+            return total;
+        }
+
+        document.getElementById('productSelect').addEventListener('change', calculateTotal);
+        document.getElementById('quantity').addEventListener('input', calculateTotal);
+        document.querySelectorAll('input[name="orderType"]').forEach(radio => {
+            radio.addEventListener('change', calculateTotal);
+        });
+
+        document.getElementById('applyCoupon').addEventListener('click', () => {
+            const couponCode = document.getElementById('couponCode').value.toUpperCase();
+            const couponSuccess = document.getElementById('couponSuccess');
+            const couponError = document.getElementById('couponError');
+            
+            if (couponCode === 'FRSHIP15') {
+                couponApplied = true;
+                couponSuccess.style.display = 'block';
+                couponError.style.display = 'none';
+                calculateTotal();
+            } else {
+                couponApplied = false;
+                couponSuccess.style.display = 'none';
+                couponError.style.display = 'block';
+                calculateTotal();
+            }
+        });
+
+        const termsModal = document.getElementById('termsModal');
+        const openTerms = document.getElementById('openTerms');
+        const closeTerms = document.getElementById('closeTerms');
+
+        openTerms.addEventListener('click', () => {
+            termsModal.style.display = 'block';
+        });
+
+        closeTerms.addEventListener('click', () => {
+            termsModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === termsModal) {
+                termsModal.style.display = 'none';
+            }
+        });
+
         document.getElementById('orderForm').addEventListener('submit', (e) => {
             e.preventDefault();
             
             const formData = new FormData(e.target);
+            const productSelect = document.getElementById('productSelect');
+            const selectedOption = productSelect.options[productSelect.selectedIndex];
+            
             const orderData = {
+                orderId: 'RVN' + Date.now(),
                 name: formData.get('customerName'),
                 phone: formData.get('phoneNumber'),
                 location: formData.get('location'),
                 product: formData.get('productSelect'),
                 quantity: formData.get('quantity'),
-                orderType: formData.get('orderType')
+                orderType: formData.get('orderType'),
+                total: calculateTotal(),
+                coupon: couponApplied ? 'FRSHIP15' : 'None',
+                date: new Date().toLocaleString()
             };
+            
+            orders.push(orderData);
+            localStorage.setItem('ravnorOrders', JSON.stringify(orders));
             
             console.log('Order Submitted:', orderData);
             
@@ -650,8 +1003,13 @@
             const successMsg = document.getElementById('orderSuccess');
             successMsg.style.display = 'block';
             
-            // Reset form
+            // Reset form and coupon
             e.target.reset();
+            couponApplied = false;
+            document.getElementById('couponSuccess').style.display = 'none';
+            document.getElementById('couponError').style.display = 'none';
+            document.getElementById('couponCode').value = '';
+            calculateTotal();
             
             // Hide message after 5 seconds
             setTimeout(() => {
@@ -713,29 +1071,66 @@
             }, 5000);
         });
 
-        // Admin Login Submission
         document.getElementById('adminForm').addEventListener('submit', (e) => {
             e.preventDefault();
             
             const formData = new FormData(e.target);
-            const adminData = {
-                username: formData.get('adminUsername'),
-                password: formData.get('adminPassword')
-            };
+            const username = formData.get('adminUsername');
+            const password = formData.get('adminPassword');
             
-            console.log('Admin Login Attempt:', adminData.username);
+            console.log('[v0] Admin login attempt:', username);
             
-            // Show success message
-            const successMsg = document.getElementById('adminSuccess');
-            successMsg.style.display = 'block';
-            
-            // Simulate redirect after 2 seconds
-            setTimeout(() => {
-                alert('Admin panel would load here. Connect to backend for full functionality.');
-                successMsg.style.display = 'none';
+            // Check credentials
+            if (username === 'admin' && password === 'ravnor2024') {
+                isAdminLoggedIn = true;
+                
+                // Show success message
+                const successMsg = document.getElementById('adminSuccess');
+                successMsg.style.display = 'block';
+                
+                // Switch to admin panel after 1 second
+                setTimeout(() => {
+                    document.getElementById('adminLoginForm').style.display = 'none';
+                    document.getElementById('adminPanel').style.display = 'block';
+                    successMsg.style.display = 'none';
+                    loadOrders();
+                }, 1000);
+                
                 e.target.reset();
-            }, 2000);
+            } else {
+                alert('Invalid username or password');
+            }
         });
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            isAdminLoggedIn = false;
+            document.getElementById('adminLoginForm').style.display = 'block';
+            document.getElementById('adminPanel').style.display = 'none';
+        });
+
+        function loadOrders() {
+            const ordersTableBody = document.getElementById('ordersTableBody');
+            orders = JSON.parse(localStorage.getItem('ravnorOrders')) || [];
+            
+            if (orders.length === 0) {
+                ordersTableBody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 2rem;">No orders yet</td></tr>';
+            } else {
+                ordersTableBody.innerHTML = orders.map(order => `
+                    <tr>
+                        <td>${order.orderId}</td>
+                        <td>${order.name}</td>
+                        <td>${order.phone}</td>
+                        <td>${order.location}</td>
+                        <td>${order.product}</td>
+                        <td>${order.quantity}</td>
+                        <td>${order.orderType}</td>
+                        <td>₹${order.total}</td>
+                        <td>${order.coupon}</td>
+                        <td>${order.date}</td>
+                    </tr>
+                `).join('');
+            }
+        }
     </script>
 </body>
 </html>
