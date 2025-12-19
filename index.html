@@ -612,7 +612,7 @@
                 <!-- Apply coupon code section -->
                 <div class="coupon-section">
                     <h3>Apply Coupon Code</h3>
-                    <p>Use code <strong>FRSHIP15</strong> to get free shipping!</p>
+                   
                     <div class="coupon-input-group">
                         <input type="text" id="couponCode" placeholder="Enter coupon code" style="text-transform: uppercase;">
                         <button type="button" class="coupon-btn" id="applyCoupon">Apply</button>
@@ -716,7 +716,7 @@
             <div class="contact-info">
                 <div class="contact-card">
                     <h3>📍 Address</h3>
-                    <p>RAVNOR Clothing Store<br>
+                    <p>G**************<br>
                     Kasganj, Uttar Pradesh<br>
                     India</p>
                 </div>
@@ -727,8 +727,8 @@
                 </div>
                 <div class="contact-card">
                     <h3>✉️ Email</h3>
-                    <p>support@ravnor.com<br>
-                    orders@ravnor.com</p>
+                    <p>itzshauryz@gmail.com
+                    itzshauryz@proton.me</p>
                 </div>
             </div>
 
@@ -882,6 +882,11 @@
     </footer>
 
     <script>
+        // Telegram Bot Configuration - Replace with your bot token and chat ID
+        const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN_HERE'; // Get from @BotFather
+        const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID_HERE'; // Your group/channel chat ID
+        const TELEGRAM_API_URL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+        
         let orders = JSON.parse(localStorage.getItem('ravnorOrders')) || [];
         let couponApplied = false;
         let isAdminLoggedIn = false;
@@ -974,7 +979,8 @@
             }
         });
 
-        document.getElementById('orderForm').addEventListener('submit', (e) => {
+        // Order Form Submission
+        document.getElementById('orderForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const formData = new FormData(e.target);
@@ -994,10 +1000,51 @@
                 date: new Date().toLocaleString()
             };
             
+            // Store order locally
             orders.push(orderData);
             localStorage.setItem('ravnorOrders', JSON.stringify(orders));
             
             console.log('Order Submitted:', orderData);
+            
+            try {
+                const message = `🛍️ *NEW ORDER RECEIVED*\n\n` +
+                    `*Order ID:* ${orderData.orderId}\n` +
+                    `*Customer:* ${orderData.name}\n` +
+                    `*Phone:* ${orderData.phone}\n` +
+                    `*Location:* ${orderData.location}\n` +
+                    `*Product:* ${orderData.product}\n` +
+                    `*Quantity:* ${orderData.quantity}\n` +
+                    `*Order Type:* ${orderData.orderType}\n` +
+                    `*Total Amount:* ₹${orderData.total}\n` +
+                    `*Coupon Used:* ${orderData.coupon}\n` +
+                    `*Date:* ${orderData.date}\n\n` +
+                    `━━━━━━━━━━━━━━━━━\n` +
+                    `📦 RAVNOR Order System\n` +
+                    `Powered by RDX Commerce API`;
+
+                const response = await fetch(TELEGRAM_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.ok) {
+                    console.log('[v0] Telegram notification sent successfully!');
+                } else {
+                    console.error('[v0] Telegram API error:', result.description);
+                }
+            } catch (error) {
+                console.error('[v0] Failed to send Telegram notification:', error);
+                console.log('[v0] Order saved locally but Telegram notification may have failed');
+            }
             
             // Show success message
             const successMsg = document.getElementById('orderSuccess');
@@ -1018,7 +1065,7 @@
         });
 
         // Return Form Submission
-        document.getElementById('returnForm').addEventListener('submit', (e) => {
+        document.getElementById('returnForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const formData = new FormData(e.target);
@@ -1026,10 +1073,46 @@
                 name: formData.get('returnName'),
                 phone: formData.get('returnPhone'),
                 orderNumber: formData.get('orderNumber'),
-                reason: formData.get('returnReason')
+                reason: formData.get('returnReason'),
+                date: new Date().toLocaleString()
             };
             
             console.log('Return Request Submitted:', returnData);
+            
+            try {
+                const message = `🔄 *NEW RETURN REQUEST*\n\n` +
+                    `*Customer:* ${returnData.name}\n` +
+                    `*Phone:* ${returnData.phone}\n` +
+                    `*Order Number:* ${returnData.orderNumber}\n` +
+                    `*Return Reason:* ${returnData.reason}\n` +
+                    `*Date:* ${returnData.date}\n\n` +
+                    `━━━━━━━━━━━━━━━━━\n` +
+                    `📦 RAVNOR Return System\n` +
+                    `Powered by RDX Commerce API`;
+
+                const response = await fetch(TELEGRAM_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.ok) {
+                    console.log('[v0] Telegram notification sent successfully!');
+                } else {
+                    console.error('[v0] Telegram API error:', result.description);
+                }
+            } catch (error) {
+                console.error('[v0] Failed to send Telegram notification:', error);
+                console.log('[v0] Return request logged but Telegram notification may have failed');
+            }
             
             // Show success message
             const successMsg = document.getElementById('returnSuccess');
