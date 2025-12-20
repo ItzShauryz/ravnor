@@ -612,7 +612,7 @@
                 <!-- Apply coupon code section -->
                 <div class="coupon-section">
                     <h3>Apply Coupon Code</h3>
-                   
+                    <p>Use code <strong>FRSHIP15</strong> to get free shipping!</p>
                     <div class="coupon-input-group">
                         <input type="text" id="couponCode" placeholder="Enter coupon code" style="text-transform: uppercase;">
                         <button type="button" class="coupon-btn" id="applyCoupon">Apply</button>
@@ -716,7 +716,7 @@
             <div class="contact-info">
                 <div class="contact-card">
                     <h3>📍 Address</h3>
-                    <p>G**************<br>
+                    <p>RAVNOR Clothing Store<br>
                     Kasganj, Uttar Pradesh<br>
                     India</p>
                 </div>
@@ -727,8 +727,8 @@
                 </div>
                 <div class="contact-card">
                     <h3>✉️ Email</h3>
-                    <p>itzshauryz@gmail.com
-                    itzshauryz@proton.me</p>
+                    <p>support@ravnor.com<br>
+                    orders@ravnor.com</p>
                 </div>
             </div>
 
@@ -883,10 +883,15 @@
 
     <script>
         // Telegram Bot Configuration - Replace with your bot token and chat ID
-        const TELEGRAM_BOT_TOKEN = '7985949001:AAGcx3P4YhN58VhYCb4_dmWfcmyAlkGcP-E'; // Get from @BotFather
-        const TELEGRAM_CHAT_ID = '7985949001'; // Your group/channel chat ID
+        const TELEGRAM_BOT_TOKEN = '7985949001:AAGcx3P4YhN58VhYCb4_dmWfcmyAlkGcP-E'; // Your bot token
+        const TELEGRAM_CHAT_ID = '7985949001'; // Your chat ID
         const TELEGRAM_API_URL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
         
+        // Debug: Log configuration status
+        console.log('[v0] Telegram Bot Status:');
+        console.log('[v0] Bot Token configured:', TELEGRAM_BOT_TOKEN !== 'YOUR_BOT_TOKEN_HERE');
+        console.log('[v0] Chat ID configured:', TELEGRAM_CHAT_ID !== 'YOUR_CHAT_ID_HERE');
+
         let orders = JSON.parse(localStorage.getItem('ravnorOrders')) || [];
         let couponApplied = false;
         let isAdminLoggedIn = false;
@@ -1038,12 +1043,15 @@
                 
                 if (result.ok) {
                     console.log('[v0] Telegram notification sent successfully!');
+                    alert('Order placed successfully! Notification sent to Telegram.');
                 } else {
                     console.error('[v0] Telegram API error:', result.description);
+                    alert('Order saved, but Telegram notification failed: ' + result.description);
                 }
             } catch (error) {
                 console.error('[v0] Failed to send Telegram notification:', error);
                 console.log('[v0] Order saved locally but Telegram notification may have failed');
+                alert('Order saved, but Telegram notification failed. Check console for details.');
             }
             
             // Show success message
